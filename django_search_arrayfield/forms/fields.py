@@ -4,7 +4,7 @@ from django import forms
 from django.contrib.postgres.utils import prefix_validation_error
 from django.utils.translation import gettext_lazy as _
 
-from django_search_arrayfield.forms.widgets import DynamicArrayWidget
+from .widgets import DynamicArrayWidget
 
 
 class DynamicArrayField(forms.Field):
