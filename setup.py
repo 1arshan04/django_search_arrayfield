@@ -2,9 +2,12 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
-VERSION = '1.0.5'
+VERSION = '1.1.1'
 DESCRIPTION = 'Dynamic Search in Array Field in Django Admin'
 LONG_DESCRIPTION = 'A package that allows Dynamic Search in Array Field in Django Admin'
+
+with open("README.md") as f:
+    readme = f.read()
 
 # Setting up
 setup(
@@ -15,7 +18,11 @@ setup(
     description=DESCRIPTION,
     long_description_content_type="text/markdown",
     long_description=LONG_DESCRIPTION,
-    packages=find_packages(),
+    url="https://github.com/The-Tarzan-Way/django_search_arrayfield",
+    packages=["django_search_arrayfield"],
+    include_package_data=True,
+    
+
     install_requires=[],
     keywords=['python', 'django_better_admin', 'dynamic_search', 'dynamic-search', 'django-admin'],
     classifiers=[
