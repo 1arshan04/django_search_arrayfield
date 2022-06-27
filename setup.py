@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 import codecs
 import os
 
-VERSION = '1.0.0'
+VERSION = '1.0.5'
 DESCRIPTION = 'Dynamic Search in Array Field in Django Admin'
 LONG_DESCRIPTION = 'A package that allows Dynamic Search in Array Field in Django Admin'
 
