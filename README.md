@@ -11,7 +11,7 @@ Add it to your \`INSTALLED\_APPS\`:
 ```python
 INSTALLED_APPS = (
     ...
-    'django-search-arrayfield',
+    'django_search_arrayfield',
     ...
 )
 ```
