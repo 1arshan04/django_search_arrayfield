@@ -29,6 +29,7 @@ as is use to aviod any unneccary conflict with django-better-admin
 Import DynamicArrayMixin like below
 ```python
 from django_search_arrayfield.admin.mixins import DynamicArrayMixin
+from django_search_arrayfield.forms.widgets import DynamicArrayWidget
 ```
 
 In your admin class add `DynamicArrayMixin`:
@@ -41,7 +42,12 @@ Inside your admin class add this line:
     ...
 ```python
 change_form_template = 'abc.html'
+kwargs = {"attrs": {"size": 50}}
+formfield_overrides = {
+        SearchArrayField: {'widget': DynamicArrayWidget(**kwargs)}
+    }
 ```
+Here size can be between 0-100, default is 40. 
 `abc.html` is a file which will add that javascript file(`def.js`) in which function with name RouteToFunction is present
 ```javascript
 <script src="{% static 'js/def.js' %}" ></script>

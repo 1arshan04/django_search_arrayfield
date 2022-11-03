@@ -5,15 +5,22 @@ class DynamicArrayWidget(forms.TextInput):
 
     template_name = "django_search_arrayfield/forms/widgets/dynamic_array.html"
 
+
     def __init__(self, *args, **kwargs):
+        if "attrs" in kwargs and  "size" in kwargs["attrs"]:
+            self.size = kwargs["attrs"]["size"]
+        else:
+            self.size = 40
         self.subwidget_form = kwargs.pop("subwidget_form", forms.TextInput)
         super().__init__(*args, **kwargs)
+
 
     def get_context(self, name, value, attrs):
         context_value = value or [""]
         context = super().get_context(name, context_value, attrs)
         final_attrs = context["widget"]["attrs"]
         id_ = context["widget"]["attrs"].get("id")
+        final_attrs["size"] = self.size
         context["widget"]["is_none"] = value is None
 
         subwidgets = []
@@ -21,11 +28,13 @@ class DynamicArrayWidget(forms.TextInput):
             widget_attrs = final_attrs.copy()
             if id_:
                 widget_attrs["id"] = "{id_}_{index}".format(id_=id_, index=index)
+            widget_attrs["size"] = self.size
             widget = self.subwidget_form()
             widget.is_required = self.is_required
             subwidgets.append(widget.get_context(name, item, widget_attrs)["widget"])
 
         context["widget"]["subwidgets"] = subwidgets
+        context["js_name"] = self.js_name
         return context
 
     def value_from_datadict(self, data, files, name):
@@ -40,6 +49,7 @@ class DynamicArrayWidget(forms.TextInput):
 
     def format_value(self, value):
         return value or []
+
 
 
 class DynamicArrayTextareaWidget(DynamicArrayWidget):
