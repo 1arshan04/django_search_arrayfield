@@ -34,7 +34,6 @@ class DynamicArrayWidget(forms.TextInput):
             subwidgets.append(widget.get_context(name, item, widget_attrs)["widget"])
 
         context["widget"]["subwidgets"] = subwidgets
-        context["js_name"] = self.js_name
         return context
 
     def value_from_datadict(self, data, files, name):
